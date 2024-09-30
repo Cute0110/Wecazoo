@@ -102,7 +102,7 @@ const GamesSection: React.FC = () => {
   const [isSlotGameModalOpen, setIsSlotGameModalOpen] = useState(false);
   const [slotGameData, setSlotGameData] = useState([]);
   const [isSlotGameLoading, setIsSlotGameLoading] = useState(false);
-  const [selectedProviderCode, setSelectedProviderCode] = useState(false);
+  const [selectedProviderCode, setSelectedProviderCode] = useState("");
 
   const filterGames = (category: string) => {
     setSelectedCategory(category);
@@ -113,7 +113,7 @@ const GamesSection: React.FC = () => {
     }
   };
 
-  const onSlotProviderClick = async (providerCode: any) => {
+  const onSlotProviderClick = async (providerCode: string) => {
     setIsSlotGameModalOpen(true);
     setIsSlotGameLoading(true);
     setSelectedProviderCode(providerCode);
@@ -136,7 +136,7 @@ const GamesSection: React.FC = () => {
 
   const onSlotGameClick = async (gameData: any) => {
     try {
-      let res = await axios.post(encodeURI("https://api.bestfun.io/gambling_api/game_launch"), {
+      const res = await axios.post(encodeURI("https://api.bestfun.io/gambling_api/game_launch"), {
         agent_code: "wecazoo",
         agent_token: "374d451850b7eb55baf59c9ae16c2b08",
         user_code: "test", // If the user pointed out by user_code does not exist, it is newly created.
