@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
 import Image from 'next/image';
+import Loader from '../Loader';
 
 const SlotGamesList = ({ isModalOpen, setIsModalOpen, slotGameData, isLoading, onSlotGameClick }: any) => {
 
@@ -18,6 +19,7 @@ const SlotGamesList = ({ isModalOpen, setIsModalOpen, slotGameData, isLoading, o
     <>
       <Modal title="Slot Games" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null} width="80vw">
         <div style={{ height: "65vh" }} className='overflow-y-auto'>
+          {isLoading ? <Loader /> : 
           <div className='grid grid-cols-5 gap-4'>
             {slotGameData.map((item: any, index: any) =>
               <div className='relative aspect-[2/3] rounded-lg overflow-hidden group cursor-pointer w-full h-[300px]' key={index} onClick={() => onSlotGameClick(item)}>
@@ -35,7 +37,7 @@ const SlotGamesList = ({ isModalOpen, setIsModalOpen, slotGameData, isLoading, o
                 </div>
               </div>
             )}
-          </div>
+          </div> }
         </div>
       </Modal>
     </>
